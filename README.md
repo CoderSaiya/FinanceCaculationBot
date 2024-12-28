@@ -119,3 +119,12 @@ If you encounter any issues or have questions:
 ---
 
 **Note**: Remember to never share your bot token publicly or commit it to version control systems.
+
+## License
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## 📞 Contact
+
+Nhat Cuong (CoderSaiya) - sonysam.contacts@gmail.com
+
+Project link: [project repo](https://github.com/CoderSaiya/DrivingExamApp)
