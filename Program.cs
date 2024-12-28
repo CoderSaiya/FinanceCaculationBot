@@ -4,6 +4,8 @@ using Telegram.Bot.Types.Enums;
 
 class Program
 {
+    private static readonly string ExcelFilePath = "data.xlsx";
+    private static readonly string BotToken = "TOKEN_HERE"; // thay bằng token bot của bạn
     static void Main()
     {
         System.Console.WriteLine("Hello World!");
