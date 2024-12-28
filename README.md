@@ -127,4 +127,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Nhat Cuong (CoderSaiya) - sonysam.contacts@gmail.com
 
-Project link: [project repo](https://github.com/CoderSaiya/DrivingExamApp)
+Project link: [project repo](https://github.com/CoderSaiya/FinanceCaculationBot)
