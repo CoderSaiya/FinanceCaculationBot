@@ -10,7 +10,7 @@ class Program
     }
 
     [Obsolete]
-    public static async void HandelUpdateAsyn(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+    public static async void HandleUpdateAsyn(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
     {
         if (update.Type != UpdateType.Message || update.Message!.Type != MessageType.Text)
             return;
