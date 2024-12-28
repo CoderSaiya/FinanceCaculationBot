@@ -51,6 +51,12 @@ class Program
         }
     }
 
+    private static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
+    {
+        Console.WriteLine($"Lỗi: {exception.Message}");
+        return Task.CompletedTask;
+    }
+
     public static void WriteToExcel(DateTime date, string type, decimal amount, string description)
     {
         // Write to Excel
