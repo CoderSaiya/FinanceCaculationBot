@@ -1,4 +1,5 @@
 ﻿using Telegram.Bot;
+using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
@@ -6,13 +7,26 @@ class Program
 {
     private static readonly string ExcelFilePath = "data.xlsx";
     private static readonly string BotToken = "TOKEN_HERE"; // thay bằng token bot của bạn
-    static void Main()
+    static async Task Main(string[] args)
     {
-        System.Console.WriteLine("Hello World!");
+        var botClient = new TelegramBotClient(BotToken);
+
+        Console.WriteLine("Bot đang chạy...");
+
+        // Thiết lập handler nhận tin nhắn
+        using var cts = new CancellationTokenSource();
+        botClient.StartReceiving(
+            HandleUpdateAsync,
+            HandleErrorAsync,
+            new ReceiverOptions { AllowedUpdates = Array.Empty<UpdateType>() },
+            cancellationToken: cts.Token
+        );
+
+        Console.ReadLine();
+        cts.Cancel();
     }
 
-    [Obsolete]
-    public static async void HandleUpdateAsyn(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+    public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
     {
         if (update.Type != UpdateType.Message || update.Message!.Type != MessageType.Text)
             return;
@@ -46,14 +60,14 @@ class Program
 
             await botClient.SendTextMessageAsync(chatId, $"Đã ghi: {type} {Math.Abs(amount):N0} - {description}", cancellationToken: cancellationToken);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Console.WriteLine($"Lỗi: {ex.Message}");
             await botClient.SendTextMessageAsync(chatId, "Có lỗi xảy ra khi xử lý. Vui lòng thử lại.", cancellationToken: cancellationToken);
         }
     }
 
-    private static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
+    private static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, HandleErrorSource handleErrorSource, CancellationToken cancellationToken)
     {
         Console.WriteLine($"Lỗi: {exception.Message}");
         return Task.CompletedTask;
