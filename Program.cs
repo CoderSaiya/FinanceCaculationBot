@@ -77,6 +77,8 @@ class Program
     public static void WriteToExcel(DateTime date, string type, decimal amount, string description)
     {
         // Write to Excel
+        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
         FileInfo file = new FileInfo(ExcelFilePath);
 
         using var package = new ExcelPackage(file);
