@@ -1,4 +1,5 @@
-﻿using Telegram.Bot;
+﻿using OfficeOpenXml;
+using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -76,6 +77,29 @@ class Program
     public static void WriteToExcel(DateTime date, string type, decimal amount, string description)
     {
         // Write to Excel
+        FileInfo file = new FileInfo(ExcelFilePath);
 
+        using var package = new ExcelPackage(file);
+
+        var worksheet = package.Workbook.Worksheets.Count == 0 
+            ? package.Workbook.Worksheets.Add("Sheet1") 
+            : package.Workbook.Worksheets[0];
+
+        if (worksheet.Dimension == null)
+        {
+            worksheet.Cells[1, 1].Value = "Ngày";
+            worksheet.Cells[1, 2].Value = "Loại";
+            worksheet.Cells[1, 3].Value = "Số tiền";
+            worksheet.Cells[1, 4].Value = "Mô tả";
+        }
+
+        var row = worksheet.Dimension.Rows + 1;
+
+        worksheet.Cells[row, 1].Value = date.ToString();
+        worksheet.Cells[row, 2].Value = type;
+        worksheet.Cells[row, 3].Value = amount;
+        worksheet.Cells[row, 4].Value = description;
+
+        package.Save();
     }
 }
