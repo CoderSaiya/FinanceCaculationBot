@@ -93,6 +93,9 @@ class Program
             worksheet.Cells[1, 2].Value = "Loại";
             worksheet.Cells[1, 3].Value = "Số tiền";
             worksheet.Cells[1, 4].Value = "Mô tả";
+
+            worksheet.Cells[1, 6].Value = "Tổng Chi";
+            worksheet.Cells[1, 7].Value = "Tổng Thu";
         }
 
         var row = worksheet.Dimension.Rows + 1;
@@ -101,6 +104,10 @@ class Program
         worksheet.Cells[row, 2].Value = type;
         worksheet.Cells[row, 3].Value = amount;
         worksheet.Cells[row, 4].Value = description;
+
+        var lastRow = row;
+        worksheet.Cells[2, 6].Formula = $"SUMIF(B2:B{lastRow},\"Chi\",C2:C{lastRow})";
+        worksheet.Cells[2, 7].Formula = $"SUMIF(B2:B{lastRow},\"Thu\",C2:C{lastRow})";
 
         package.Save();
     }
