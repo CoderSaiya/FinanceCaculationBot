@@ -60,6 +60,8 @@ Examples:
 - Expense: `-50000 + Grocery shopping`
 - Income: `1000000 + Monthly salary`
 
+![Chat With Bot](./imgs/chat-telegram.png)
+
 The bot will:
 - Automatically categorize the transaction based on the amount's sign
 - Save the transaction to `data.xlsx`
@@ -74,6 +76,8 @@ The bot automatically creates and maintains an Excel file (`data.xlsx`) with the
 - Mô tả (Description)
 
 The file is updated in real-time with each new transaction.
+
+![Data](./imgs/data-excel.png)
 
 ## Error Handling
 
