@@ -7,7 +7,7 @@ using Telegram.Bot.Types.Enums;
 class Program
 {
     private static readonly string ExcelFilePath = "data.xlsx";
-    private static readonly string BotToken = "TOKEN_HERE"; // thay bằng token bot của bạn
+    private static readonly string BotToken = "8163667848:AAF-o9e5V6SxAG-uXd3dRQBKjGl4gK56ce0"; // thay bằng token bot của bạn
     static async Task Main(string[] args)
     {
         var botClient = new TelegramBotClient(BotToken);
